@@ -1,23 +1,23 @@
-var path = require('path');
+const path = require("path")
 
-var isProduction = process.argv.indexOf('-p') >= 0 || process.env.NODE_ENV === 'production';
-var sourcePath = path.join(__dirname, './src');
-var outPath = path.join(__dirname, './build');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const isProduction = process.argv.indexOf("-p") >= 0 || process.env.NODE_ENV === "production"
+const sourcePath = path.join(__dirname, "./src")
+const outPath = path.join(__dirname, "./build")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 module.exports = {
   context: sourcePath,
   entry: {
-    app: './main.tsx'
+    app: "./main.tsx"
   },
   output: {
     path: outPath,
-    filename: isProduction ? '[contenthash].js' : '[hash].js',
-    chunkFilename: isProduction ? '[name].[contenthash].js' : '[name].[hash].js'
+    filename: isProduction ? "[contenthash].js" : "[hash].js",
+    chunkFilename: isProduction ? "[name].[contenthash].js" : "[name].[hash].js"
   },
-  target: 'web',
+  target: "web",
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'assets/index.html',
+      template: "assets/index.html",
       minify: {
         minifyJS: true,
         minifyCSS: true,
@@ -29,10 +29,10 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: ['.js', '.ts', '.tsx'],
-    mainFields: ['module', 'browser', 'main'],
+    extensions: [".js", ".ts", ".tsx"],
+    mainFields: ["module", "browser", "main"],
     alias: {
-      app: path.resolve(__dirname, 'src/app/')
+      app: path.resolve(__dirname, "src/app/")
     }
   },
   module: {
@@ -42,13 +42,13 @@ module.exports = {
         test: /\.tsx?$/,
         use: [
           !isProduction && {
-            loader: 'babel-loader',
-            options: { plugins: ['react-hot-loader/babel'] }
+            loader: "babel-loader",
+            options: { plugins: ["react-hot-loader/babel"] }
           },
-          'ts-loader'
+          "ts-loader"
         ].filter(Boolean)
       },
-      { test: /\.html$/, use: 'html-loader' },
+      { test: /\.html$/, use: "html-loader" }
     ]
   },
   optimization: {
@@ -56,13 +56,13 @@ module.exports = {
       name: true,
       cacheGroups: {
         commons: {
-          chunks: 'initial',
+          chunks: "initial",
           minChunks: 2
         },
         vendors: {
           test: /[\\/]node_modules[\\/]/,
-          chunks: 'all',
-          filename: isProduction ? 'vendor.[contenthash].js' : 'vendor.[hash].js',
+          chunks: "all",
+          filename: isProduction ? "vendor.[contenthash].js" : "vendor.[hash].js",
           priority: -10
         }
       }
@@ -76,8 +76,8 @@ module.exports = {
     historyApiFallback: {
       disableDotRule: true
     },
-    stats: 'minimal',
-    clientLogLevel: 'warning'
+    stats: "minimal",
+    clientLogLevel: "warning"
   },
-  devtool: 'inline-source-map',
-};
+  devtool: "inline-source-map"
+}

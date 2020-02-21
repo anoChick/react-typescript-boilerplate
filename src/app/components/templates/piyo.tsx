@@ -1,9 +1,10 @@
-import * as React from 'react';
+import * as React from 'react'
 
 import Button from '../atoms/button'
-export default () => (
+const PiyoTemplate = () => (
   <div>
     piyo
     <Button />
   </div>
-);
+)
+export default PiyoTemplate

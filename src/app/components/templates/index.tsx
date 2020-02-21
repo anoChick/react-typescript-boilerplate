@@ -1,4 +1,4 @@
-import * as React from 'react';
-export default () => (
-  <div>Index</div>
-);
+import * as React from 'react'
+const IndexTemplate = () => <div>Index</div>
+
+export default IndexTemplate

@@ -56,5 +56,13 @@ module.exports = {
     "prettier/prettier": "error",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["__tests__/**/*"],
+      "rules": {
+      "node/no-unpublished-import": "off",
+      "node/no-missing-import": "off",
+    }
+  }]
 }
